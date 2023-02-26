@@ -7,8 +7,10 @@ export type WorkoutDocument = HydratedDocument<Workout>
 export class Workout {
     @Prop()
     name: string
+
     @Prop()
     reps: number
+
     @Prop()
     load: number
 }
