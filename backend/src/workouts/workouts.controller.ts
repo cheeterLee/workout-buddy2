@@ -1,7 +1,7 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { WorkoutsService } from './workouts.service';
 import { Workout } from './schemas/workout.schema'
-import { CreateWorkoutDto } from './dto/creata-workout.dto';
+import { CreateWorkoutDto } from './dto/create-workout.dto';
 
 @Controller('workouts')
 export class WorkoutsController {
@@ -13,7 +13,7 @@ export class WorkoutsController {
     }
     
     @Post()
-    async create(createWorkoutDto: CreateWorkoutDto): Promise<Workout> {
+    async create(@Body() createWorkoutDto: CreateWorkoutDto): Promise<Workout> {
         return this.workoutService.create(createWorkoutDto)
     }
 }

@@ -1,6 +1,6 @@
-import { Body, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Workout, WorkoutDocument } from './schemas/workout.schema';
-import { CreateWorkoutDto } from './dto/creata-workout.dto';
+import { CreateWorkoutDto } from './dto/create-workout.dto';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 
@@ -10,7 +10,7 @@ export class WorkoutsService {
     @InjectModel(Workout.name) private workoutModel: Model<WorkoutDocument>,
   ) {}
 
-  async create(@Body() createWorkoutDto: CreateWorkoutDto): Promise<Workout> {
+  async create(createWorkoutDto: CreateWorkoutDto): Promise<Workout> {
     const createdWorkout = new this.workoutModel(createWorkoutDto)
     return createdWorkout.save()
   }
