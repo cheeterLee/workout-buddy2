@@ -8,7 +8,7 @@ export interface IPortfolioPageProps {}
 const PortfolioPage: React.FunctionComponent<IPortfolioPageProps> = (props) => {
 	return (
 		<div className="flex px-10 py-6 w-screen h-screen gap-4">
-			<div className="flex flex-col h-[100%] gap-4">
+			<div className="hidden sm:flex sm:flex-col sm:w-[300px] md:w-[400px] lg:w-[550px] xl:w-[700px] h-[100%] gap-4">
 				<Calender />
 				<Recommendation />
 			</div>
