@@ -1,6 +1,16 @@
+import { Routes, Route } from 'react-router-dom'
+import { Navbar } from './components'
+import { Personal, Portfolio } from './pages'
+
 function App() {
   return (
-    <div className='text-indigo-400 text-lg'>hello</div>
+    <>
+      <Navbar />
+      <Routes>
+        <Route path='/workouts' element={<Portfolio />} />
+        <Route path='/personal' element={<Personal />} />
+      </Routes>
+    </>
   )
 }
 
