@@ -9,10 +9,10 @@ export interface INavbarProps {}
 
 const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
 	return (
-		<div className="bg-neutral-600 w-screen flex justify-center items-center h-24 gap-14
+		<div className="bg-primary-400 dark:bg-primary-900 w-screen flex justify-center items-center h-24 gap-14
         drop-shadow-md">
 			<div className='flex justify-center items-center shrink-0 cursor-pointer'>
-                <img className="w-32 h-32" src='../../public/logo_transparent.png' alt="logo" />
+                <img className="w-32 h-32" src='/logo_transparent.png' alt="logo" />
             </div>
 			<div>
 				<ul className="flex items-center text-yellow-600 gap-8">
