@@ -8,5 +8,5 @@ body * {
 }
 
 body {
-    @apply bg-primary-200 dark:bg-primary-700;
+    @apply bg-primary-600;
 }
