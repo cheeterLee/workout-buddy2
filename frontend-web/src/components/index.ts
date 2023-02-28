@@ -1,6 +1,5 @@
 export { default as Navbar } from './Navbar'
 export { default as NavLink } from './Navlink'
-export { default as ThemeSwitcher } from './ThemeSwitcher'
 export { default as Navbutton } from './Navbutton'
 export { default as Calender } from './Calender'
 export { default as Recommendation } from './Recommendation'
