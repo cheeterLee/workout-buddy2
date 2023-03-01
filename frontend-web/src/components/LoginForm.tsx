@@ -1,23 +1,11 @@
-import React from "react"
-import { Formik, Field, Form } from "formik"
+import React from 'react'
+import { Formik, Field, Form } from 'formik'
 
-export interface ILoginPageProps {}
+export interface ILoginFormProps {}
 
-const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
-	return (
-		<div className="w-screen h-screen flex flex-col items-center mt-8">
-			<div
-				className="bg-primary-300 dark:bg-primary-800 w-[300px] sm:w-[500px] md:w-[700px] lg:w-[900px] h-[500px]
-            drop-shadow-lg rounded-md flex"
-			>
-				<div className="max-h-full hidden md:block">
-					<img
-						className="max-h-full rounded-l-md"
-						src="logo.png"
-						alt="logo"
-					/>
-				</div>
-				<div className="flex-1 flex flex-col justify-center">
+const LoginForm: React.FunctionComponent<ILoginFormProps> = props => {
+    return (
+        <div className="flex-1 flex flex-col justify-center">
 					<div className="w-full text-center p-10">
 						<h2 className="text-xl text-primary-800 dark:text-yellow-400">
 							Login To{" "}
@@ -43,12 +31,7 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
 						</Form>
 					</Formik>
 				</div>
-			</div>
-            <div className="w-full py-4 text-center">
-                <p className="font-mono text-sm text-primary-700 dark:text-primary-200">Designed and coded by @cheeterLee 2023</p>
-            </div>
-		</div>
-	)
+    )
 }
 
-export default LoginPage
+export default LoginForm
