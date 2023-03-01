@@ -6,14 +6,14 @@ export interface ILoginPageProps {}
 
 const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
 	return (
-		<div className="w-screen h-screen flex flex-col items-center mt-8">
+		<div className="w-screen h-screen flex flex-col items-center mt-9">
 			<div
 				className="bg-primary-300 dark:bg-primary-800 w-[300px] sm:w-[500px] md:w-[800px] lg:w-[900px] h-[500px]
-            drop-shadow-lg rounded-md flex"
+            drop-shadow-lg rounded-lg flex"
 			>
 				<div className="h-full hidden md:block">
 					<img
-						className="max-h-full rounded-l-md object-cover"
+						className="max-h-full rounded-l-lg object-cover"
 						src="logo.png"
 						alt="logo"
 					/>

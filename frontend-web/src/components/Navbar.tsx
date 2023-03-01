@@ -40,7 +40,7 @@ const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
 				<div className="hidden sm:flex items-center gap-1">
 					<div
 						onClick={switchTheme}
-						className="bg-primary-300 dark:bg-primary-800 py-1 px-1 rounded-lg text-primary-800 dark:text-yellow-500 h-10 w-10 flex justify-center items-center cursor-pointer"
+						className="bg-primary-300 hover:bg-primary-200 dark:bg-primary-800 dark:hover:bg-primary-700 py-1 px-1 rounded-lg text-primary-800 dark:text-yellow-500 h-10 w-10 flex justify-center items-center cursor-pointer"
 					>
 						{darkTheme ? <BiMoon /> : <BiSun />}
 					</div>
