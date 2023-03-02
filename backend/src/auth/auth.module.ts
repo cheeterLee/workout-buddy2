@@ -4,9 +4,9 @@ import { AuthController } from './auth.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from '../users/schemas/user.schema'
 import { JwtModule } from '@nestjs/jwt';
-import { jwtConstants } from './constants';
 import { UsersService } from 'src/users/users.service';
 import { LocalStrategy } from './local.strategy';
+import { jwtConfig } from 'src/config/jwt.config';
 
 @Module({
   imports: [
@@ -14,12 +14,7 @@ import { LocalStrategy } from './local.strategy';
       name: User.name,
       schema: UserSchema
     }]),
-    JwtModule.register({
-      secret: jwtConstants.secret,
-      signOptions: {
-        expiresIn: '60d'
-      }
-    })
+    JwtModule.registerAsync(jwtConfig)
   ],
   providers: [AuthService, UsersService, LocalStrategy],
   controllers: [AuthController]
