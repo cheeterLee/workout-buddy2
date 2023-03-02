@@ -1,6 +1,6 @@
 import React from "react"
 import { Calender, Recommendation } from "../components"
-import WorkoutCount from "../components/WorkoutsCount"
+import WorkoutCount from "../components/CreateWorkoutForm"
 import WorkoutList from "../components/WorkoutsList"
 
 export interface IHomePageProps {}
