@@ -38,7 +38,7 @@ const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
 				<div>
 					<ul className="hidden sm:flex items-center text-primary-900 dark:text-yellow-500 gap-8">
 						<Navlink icon={<BiHome />} name="Home" />
-						<Navlink icon={<BsPerson />} name="Analytics" />
+						<Navlink icon={<BsPerson />} name="Personal" />
 						<Navlink icon={<BsTelephone />} name="Contact" />
 					</ul>
 				</div>
