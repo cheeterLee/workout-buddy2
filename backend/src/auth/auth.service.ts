@@ -11,7 +11,7 @@ export class AuthService {
 
     async validateUser(email: string, pass: string): Promise<any>  {
         try {
-            const user = await this.usersService.getUserByUsername(email)
+            const user = await this.usersService.getUserByEmail(email)
             return user
         } catch (error) {
             console.log(error)
@@ -21,7 +21,7 @@ export class AuthService {
 
     async login(user: any) {
         const payload = {
-            username: user.email,
+            email: user.email,
             sub: user.id
         }
         return {

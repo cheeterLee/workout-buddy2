@@ -45,7 +45,7 @@ const SignupForm: React.FunctionComponent<ISignupFormProps> = (props) => {
 				}}
 				onSubmit={async (values, actions) => {
 					const formData = {
-						username: values.email,
+						email: values.email,
 						password: values.password,
 					}
 

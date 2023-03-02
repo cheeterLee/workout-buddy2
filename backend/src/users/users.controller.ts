@@ -8,9 +8,9 @@ export class UsersController {
     constructor(private readonly usersService: UsersService) {}
 
     @UseGuards(AuthGuard('jwt'))
-    @Get('username')
-    getUserByUsername(@Param('username') username: string) {
-        return this.usersService.getUserByUsername(username)
+    @Get('email')
+    getUserByEmail(@Param('email') email: string) {
+        return this.usersService.getUserByEmail(email)
     }
 
     @Post()

@@ -8,15 +8,15 @@ import { User, UserDocument } from './schemas/user.schema';
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  async getUserByUsername(username: string) {
+  async getUserByEmail(email: string) {
     return this.userModel.findOne({
-        username
+        email
     }).exec()
   }
 
   async registerUser(createUserDto: CreateUserDto) {
     const createUser = new this.userModel(createUserDto)
-    const user = await this.getUserByUsername(createUser.username)
+    const user = await this.getUserByEmail(createUser.email)
     if (user) {
         throw new BadRequestException()
     }
