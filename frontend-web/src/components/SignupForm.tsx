@@ -1,6 +1,8 @@
 import React from "react"
 import { Formik, Field, Form, ErrorMessage } from "formik"
 
+const VITE_APP_BASE_URL = import.meta.env.VITE_APP_BASE_URL as string
+
 export interface ISignupFormProps {}
 
 const SignupForm: React.FunctionComponent<ISignupFormProps> = (props) => {
@@ -36,13 +38,36 @@ const SignupForm: React.FunctionComponent<ISignupFormProps> = (props) => {
 						errors.password = "Password requierd :)"
 					}
 					if (values.password !== values.cPassword) {
-						errors.cPassword = "Password must be the same as above :)"
+						errors.cPassword =
+							"Password must be the same as above :)"
 					}
 					return errors
 				}}
-				onSubmit={(values, { setSubmitting }) => {
-					console.log(values)
-					setSubmitting(false)
+				onSubmit={async (values, actions) => {
+					const formData = {
+						username: values.email,
+						password: values.password,
+					}
+
+					console.log(formData)
+
+					const response = await fetch(
+						`${VITE_APP_BASE_URL}/register`,
+						{
+							method: "POST",
+							headers: { "Content-Type": "application/json" },
+							body: JSON.stringify(formData),
+						}
+					)
+
+					console.log(response)
+
+					const signedup = await response.json()
+					console.log(signedup)
+					
+					
+					actions.resetForm()
+					actions.setSubmitting(false)
 				}}
 			>
 				<Form className="flex-1 flex flex-col px-4 gap-2">
@@ -57,7 +82,11 @@ const SignupForm: React.FunctionComponent<ISignupFormProps> = (props) => {
 						name="email"
 						type="email"
 					/>
-					<ErrorMessage className="text-red-700 dark:text-red-300 text-xs" name='email' component='div' />
+					<ErrorMessage
+						className="text-red-700 dark:text-red-300 text-xs"
+						name="email"
+						component="div"
+					/>
 					<label
 						className="text-primary-800 dark:text-yellow-400"
 						htmlFor="password"
@@ -69,7 +98,11 @@ const SignupForm: React.FunctionComponent<ISignupFormProps> = (props) => {
 						name="password"
 						type="password"
 					/>
-					<ErrorMessage className="text-red-700 dark:text-red-300 text-xs" name='password' component='div' />
+					<ErrorMessage
+						className="text-red-700 dark:text-red-300 text-xs"
+						name="password"
+						component="div"
+					/>
 					<label
 						className="text-primary-800 dark:text-yellow-400"
 						htmlFor="cPassword"
@@ -81,7 +114,11 @@ const SignupForm: React.FunctionComponent<ISignupFormProps> = (props) => {
 						name="cPassword"
 						type="Password"
 					/>
-					<ErrorMessage className="text-red-700 dark:text-red-300 text-xs" name='cPassword' component='div' />
+					<ErrorMessage
+						className="text-red-700 dark:text-red-300 text-xs"
+						name="cPassword"
+						component="div"
+					/>
 					<button
 						type="submit"
 						className="w-full bg-primary-500 hover:bg-primary-400 rounded-md drop-shadow-md mt-16 p-1 text-primary-900 dark:text-yellow-400"
