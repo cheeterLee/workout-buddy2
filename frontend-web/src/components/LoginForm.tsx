@@ -18,7 +18,7 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
 			<div className="w-full text-center p-10">
 				<h2 className="text-xl text-primary-800 dark:text-yellow-400">
 					Login To{" "}
-					<span className="underline decoration-primary-500 underline-offset-1 text-primary-900 dark:text-yellow-400">
+					<span className="underline decoration-primary-500 underline-offset-1 text-teal-700 dark:text-orange-400">
 						Workout
 					</span>
 					!
