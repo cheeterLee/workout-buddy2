@@ -3,9 +3,9 @@ import { Calender, Recommendation } from "../components"
 import WorkoutCount from "../components/WorkoutsCount"
 import WorkoutList from "../components/WorkoutsList"
 
-export interface IPortfolioPageProps {}
+export interface IHomePageProps {}
 
-const PortfolioPage: React.FunctionComponent<IPortfolioPageProps> = (props) => {
+const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
 	return (
 		<div className="flex px-10 py-6 w-screen h-screen gap-4">
 			<div className="hidden sm:flex sm:flex-col sm:w-[300px] md:w-[400px] lg:w-[550px] xl:w-[700px] h-[100%] gap-4">
@@ -20,4 +20,4 @@ const PortfolioPage: React.FunctionComponent<IPortfolioPageProps> = (props) => {
 	)
 }
 
-export default PortfolioPage
+export default HomePage

@@ -1,10 +1,10 @@
 import React from "react"
-import { Formik, Field, Form } from "formik"
 import { LoginForm } from "../components"
 
-export interface ILoginPageProps {}
+export interface IAuthPageProps {}
 
-const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
+const AuthPage: React.FunctionComponent<IAuthPageProps> = (props) => {
+	
 	return (
 		<div className="w-screen h-screen flex flex-col items-center mt-9">
 			<div
@@ -27,4 +27,4 @@ const LoginPage: React.FunctionComponent<ILoginPageProps> = (props) => {
 	)
 }
 
-export default LoginPage
+export default AuthPage
