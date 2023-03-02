@@ -104,7 +104,7 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
 						type="password"
 					/>
 					<ErrorMessage className="text-red-700 dark:text-red-300 text-xs" name='password' component='div' />
-					<button className="w-full bg-primary-500 hover:bg-primary-400 rounded-md drop-shadow-md mt-16 p-1 text-primary-900 dark:text-yellow-400">
+					<button type="submit" className="w-full bg-primary-500 hover:bg-primary-400 rounded-md drop-shadow-md mt-16 p-1 text-primary-900 dark:text-yellow-400">
 						Login
 					</button>
 				</Form>

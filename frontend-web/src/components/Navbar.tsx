@@ -5,12 +5,17 @@ import { AiOutlineClose } from "react-icons/ai"
 import Navlink from "./Navlink"
 import Navbutton from "./Navbutton"
 import { useDarkMode } from "../hooks/useDarkMode"
+import { useSelector } from "react-redux"
+import { RootState } from "../state/store"
 
 export interface INavbarProps {}
 
 const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
 	const [darkTheme, setDarkTheme] = useDarkMode()
 	const [isOpen, setIsOpen] = useState<boolean>(false)
+
+	const user = useSelector((state: RootState) => state.auth.user)
+	console.log("user:", user)
 
 	// @ts-ignore
 	const switchTheme = () => setDarkTheme(!darkTheme)
