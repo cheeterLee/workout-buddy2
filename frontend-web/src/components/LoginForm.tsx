@@ -1,5 +1,5 @@
 import React from "react"
-import { Formik, Field, Form } from "formik"
+import { Formik, Field, Form, ErrorMessage } from "formik"
 
 export interface ILoginFormProps {}
 
@@ -9,7 +9,7 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
 			<div className="w-full text-center p-10">
 				<h2 className="text-xl text-primary-800 dark:text-yellow-400">
 					Login To{" "}
-					<span className="underline decoration-primary-500 underline-offset-1">
+					<span className="underline decoration-primary-500 underline-offset-1 text-primary-900 dark:text-yellow-400">
 						Workout
 					</span>
 					!
@@ -20,7 +20,26 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
 					email: "",
 					password: "",
 				}}
-				onSubmit={() => {}}
+				validate={(values) => {
+					const errors: any = {}
+					if (!values.email) {
+						errors.email = "Email required :)"
+					} else if (
+						!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
+							values.email
+						)
+					) {
+						errors.email = "Invalid email address :)"
+					}
+					if (!values.password) {
+						errors.password = "Password requierd :)"
+					}
+					return errors
+				}}
+				onSubmit={(values, { setSubmitting }) => {
+					console.log(values)
+					setSubmitting(false)
+				}}
 			>
 				<Form className="flex-1 flex flex-col px-4 gap-2">
 					<label
@@ -30,9 +49,10 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
 						Email:
 					</label>
 					<Field
-						className="bg-primary-100 dark:bg-primary-500 rounded-md focus:outline-none focus:border-2 focus:border-primary-700 dark:focus:border-yellow-300"
+						className="bg-primary-100 dark:bg-primary-500 rounded-md focus:outline-none focus:border-2 focus:border-primary-700 dark:focus:border-yellow-300 px-2"
 						name="email"
 					/>
+					<ErrorMessage className="text-red-700 dark:text-red-300 text-xs" name='email' component='div' />
 					<label
 						className="text-primary-800 dark:text-yellow-400"
 						htmlFor="password"
@@ -40,9 +60,10 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
 						Password:
 					</label>
 					<Field
-						className="bg-primary-100 dark:bg-primary-500 rounded-md focus:outline-none focus:border-2 focus:border-primary-700 dark:focus:border-yellow-300"
+						className="bg-primary-100 dark:bg-primary-500 rounded-md focus:outline-none focus:border-2 focus:border-primary-700 dark:focus:border-yellow-300 px-2"
 						name="password"
 					/>
+					<ErrorMessage className="text-red-700 dark:text-red-300 text-xs" name='password' component='div' />
 					<button className="w-full bg-primary-500 hover:bg-primary-400 rounded-md drop-shadow-md mt-16 p-1 text-primary-900 dark:text-yellow-400">
 						Login
 					</button>
