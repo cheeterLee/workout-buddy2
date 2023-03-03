@@ -12,6 +12,9 @@ export class AuthService {
     async validateUser(email: string, pass: string): Promise<any>  {
         try {
             const user = await this.usersService.getUserByEmail(email)
+            // prevent password returning to frontend
+            // const { password, ...result } = user
+            // return result
             return user
         } catch (error) {
             console.log(error)
