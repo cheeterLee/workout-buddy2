@@ -24,6 +24,7 @@ export const authSlice = createSlice({
         setLogout: (state, action: PayloadAction<any>) => {
             state.user = null
             state.token = null
+            state.workouts = []
         },
         setWorkouts: (state, action: PayloadAction<any>) => {
             state.workouts = action.payload.workouts
