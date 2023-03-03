@@ -1,11 +1,17 @@
 import React from "react"
 import { Formik, Field, Form, ErrorMessage } from "formik"
+import { useAppDispatch } from "../state/hooks"
+import { setLogin } from "../state"
+import { useNavigate } from "react-router-dom"
 
 const VITE_APP_BASE_URL = import.meta.env.VITE_APP_BASE_URL as string
 
 export interface ISignupFormProps {}
 
 const SignupForm: React.FunctionComponent<ISignupFormProps> = (props) => {
+	const dispatch = useAppDispatch()
+	const navigate = useNavigate()
+	
 	return (
 		<div className="flex-1 flex flex-col justify-center">
 			<div className="w-full text-center p-10">
@@ -65,6 +71,15 @@ const SignupForm: React.FunctionComponent<ISignupFormProps> = (props) => {
 					const signedup = await response.json()
 					console.log(signedup)
 					
+					if (signedup) {
+						dispatch(
+							setLogin({
+								user: signedup.user,
+								token: signedup.token
+							})
+						)
+						navigate('/home')
+					}
 					
 					actions.resetForm()
 					actions.setSubmitting(false)
