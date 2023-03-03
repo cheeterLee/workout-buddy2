@@ -1,19 +1,20 @@
 import React, { useState } from "react"
 import { BsPerson, BsTelephone } from "react-icons/bs"
 import { BiHome, BiMoon, BiSun, BiMenu } from "react-icons/bi"
-import { AiOutlineClose } from "react-icons/ai"
+import { AiOutlineClose, AiFillFire, AiOutlineFire } from "react-icons/ai"
 import Navlink from "./Navlink"
 import Navbutton from "./Navbutton"
 import { useDarkMode } from "../hooks/useDarkMode"
 import { useSelector } from "react-redux"
 import { RootState } from "../state/store"
+import { useNavigate } from "react-router-dom"
 
 export interface INavbarProps {}
 
 const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
 	const [darkTheme, setDarkTheme] = useDarkMode()
 	const [isOpen, setIsOpen] = useState<boolean>(false)
-
+	const navigate = useNavigate()
 	const user = useSelector((state: RootState) => state.auth.user)
 	console.log("user:", user)
 
@@ -25,6 +26,7 @@ const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
 	return (
 		<>
 			<div
+				onClick={() => navigate('/home')}
 				className="bg-primary-400 dark:bg-primary-900 w-screen flex sm:justify-center items-center h-24 gap-14
         drop-shadow-md"
 			>
@@ -74,6 +76,8 @@ const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
 					<Navlink icon={<BiHome />} name="Home" />
 					<Navlink icon={<BsPerson />} name="Analytics" />
 					<Navlink icon={<BsTelephone />} name="Contact" />
+					<Navlink icon={<AiFillFire />} name="Login" />
+					<Navlink icon={<AiOutlineFire />} name="Signup" />
 				</ul>
 			</div>
 		</>
