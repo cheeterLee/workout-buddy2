@@ -27,7 +27,7 @@ const Navbutton: React.FunctionComponent<INavbuttonProps> = ({ text }) => {
 
     return <button 
         onClick={user ? handleLogoutClicked : handleNavigateClicked}
-    className='bg-primary-300 hover:bg-primary-200 dark:bg-primary-800 dark:hover:bg-primary-700 py-1 px-3 rounded-lg text-primary-800 dark:text-yellow-500 h-10 w-28'>
+        className='bg-primary-300 hover:bg-primary-200 dark:bg-primary-800 dark:hover:bg-primary-700 py-1 px-3 rounded-lg text-primary-800 dark:text-yellow-500 h-10 w-32'>
         {text}
     </button>
 }

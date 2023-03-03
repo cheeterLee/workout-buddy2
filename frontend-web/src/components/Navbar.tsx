@@ -49,7 +49,7 @@ const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
 					>
 						{darkTheme ? <BiMoon /> : <BiSun />}
 					</div>
-					<Navbutton text={user ? 'Logout' : 'Login'} />
+					<Navbutton text={user ? 'Logout' : 'Login / Signup'} />
 				</div>
 				<div
 					onClick={handleClick}

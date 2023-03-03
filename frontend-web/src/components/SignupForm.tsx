@@ -22,6 +22,14 @@ const SignupForm: React.FunctionComponent<ISignupFormProps> = (props) => {
 					</span>
 					!
 				</h2>
+				<p className="border-2 mt-4 py-1 text-sm text-primary-800 dark:text-yellow-400 border-primary-100 rounded-lg dark:border-primary-500">
+					Already have an account? Click here to{" "}
+					<button 
+						onClick={() => navigate('/login')}
+					className="font-semibold text-teal-700 dark:text-orange-400">
+						login
+					</button>
+				</p>
 			</div>
 			<Formik
 				initialValues={{
@@ -85,7 +93,7 @@ const SignupForm: React.FunctionComponent<ISignupFormProps> = (props) => {
 					actions.setSubmitting(false)
 				}}
 			>
-				<Form className="flex-1 flex flex-col px-4 gap-2">
+				<Form className="flex-1 flex flex-col px-4 gap-2 mt-[-20px]">
 					<label
 						className="text-primary-800 dark:text-yellow-400"
 						htmlFor="email"

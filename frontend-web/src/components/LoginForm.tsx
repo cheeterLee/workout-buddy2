@@ -9,13 +9,12 @@ const VITE_APP_BASE_URL = import.meta.env.VITE_APP_BASE_URL as string
 export interface ILoginFormProps {}
 
 const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
-
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 
 	return (
 		<div className="flex-1 flex flex-col justify-center">
-			<div className="w-full text-center p-10">
+			<div className="w-full text-center px-10 py-8">
 				<h2 className="text-xl text-primary-800 dark:text-yellow-400">
 					Login To{" "}
 					<span className="underline decoration-primary-500 underline-offset-1 text-teal-700 dark:text-orange-400">
@@ -23,6 +22,14 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
 					</span>
 					!
 				</h2>
+				<p className="border-2 mt-4 py-1 text-sm text-primary-800 dark:text-yellow-400 border-primary-100 rounded-lg dark:border-primary-500">
+					Don't have a account yet? Click here to{" "}
+					<button 
+						onClick={() => navigate('/signup')}
+					className="font-semibold text-teal-700 dark:text-orange-400">
+						signup
+					</button>
+				</p>
 			</div>
 			<Formik
 				initialValues={{
@@ -51,14 +58,17 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
 					const formDate = {
 						// TODO: can't use email here for log in
 						username: values.email,
-						password: values.password
+						password: values.password,
 					}
 
-					const response = await fetch(`${VITE_APP_BASE_URL}/auth/login`,{
-						method: 'POST',
-						headers: { "Content-Type": "application/json" },
-						body: JSON.stringify(formDate)
-					})
+					const response = await fetch(
+						`${VITE_APP_BASE_URL}/auth/login`,
+						{
+							method: "POST",
+							headers: { "Content-Type": "application/json" },
+							body: JSON.stringify(formDate),
+						}
+					)
 
 					console.log(response)
 
@@ -69,10 +79,10 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
 						dispatch(
 							setLogin({
 								user: loggedIn.user,
-								token: loggedIn.token
+								token: loggedIn.token,
 							})
 						)
-						navigate('/home')
+						navigate("/home")
 					}
 
 					actions.resetForm()
@@ -91,7 +101,11 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
 						name="email"
 						type="email"
 					/>
-					<ErrorMessage className="text-red-700 dark:text-red-300 text-xs" name='email' component='div' />
+					<ErrorMessage
+						className="text-red-700 dark:text-red-300 text-xs"
+						name="email"
+						component="div"
+					/>
 					<label
 						className="text-primary-800 dark:text-yellow-400"
 						htmlFor="password"
@@ -103,8 +117,15 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
 						name="password"
 						type="password"
 					/>
-					<ErrorMessage className="text-red-700 dark:text-red-300 text-xs" name='password' component='div' />
-					<button type="submit" className="w-full bg-primary-500 hover:bg-primary-400 rounded-md drop-shadow-md mt-16 p-1 text-primary-900 dark:text-yellow-400">
+					<ErrorMessage
+						className="text-red-700 dark:text-red-300 text-xs"
+						name="password"
+						component="div"
+					/>
+					<button
+						type="submit"
+						className="w-full bg-primary-500 hover:bg-primary-400 rounded-md drop-shadow-md mt-16 p-1 text-primary-900 dark:text-yellow-400"
+					>
 						Login
 					</button>
 				</Form>
