@@ -13,6 +13,9 @@ export class Workout {
 
     @Prop()
     load: number
+
+    @Prop()
+    username: string
 }
 
 export const WorkoutSchema = SchemaFactory.createForClass(Workout)

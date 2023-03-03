@@ -24,8 +24,8 @@ export class WorkoutsService {
   }
 
   // Get all workouts
-  async getAllWorkouts(): Promise<Workout[]> {
-    return this.workoutModel.find().exec()
+  async getAllWorkouts(username: string): Promise<Workout[]> {
+    return this.workoutModel.find({ username: username }).exec()
   }
 
   // Get single workout

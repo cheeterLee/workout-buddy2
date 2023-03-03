@@ -7,6 +7,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { WorkoutsService } from './workouts.service';
 import { Workout } from './schemas/workout.schema';
@@ -19,8 +20,8 @@ export class WorkoutsController {
 
   // GET /workouts
   @Get()
-  async findAll(): Promise<Workout[]> {
-    return this.workoutService.getAllWorkouts();
+  async findAll(@Query('username') username: string): Promise<Workout[]> {
+    return this.workoutService.getAllWorkouts(username);
   }
 
   // GET /workouts/:id --> { ... }

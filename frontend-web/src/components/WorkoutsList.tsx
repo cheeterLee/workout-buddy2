@@ -11,9 +11,10 @@ export interface IWorkoutListProps {}
 
 const WorkoutList: React.FunctionComponent<IWorkoutListProps> = props => {
     const workouts = useAppSelector((state) => state.auth.workouts)
+    const user = useAppSelector(state => state.auth.user)
 
     const fetchWorkouts = async () => {
-        const response = await fetch(`${VITE_APP_BASE_URL}/workouts`)
+        const response = await fetch(`${VITE_APP_BASE_URL}/workouts/?username=${user}`)
         console.log(response)
         const fetchedWorkouts: Workout[] = await response.json()
         console.log(fetchedWorkouts)

@@ -2,6 +2,7 @@ import React from "react"
 import { Formik, Field, Form } from "formik"
 import { Workout } from "../types"
 //TODO: ErrorMessage implementation
+import { useAppSelector } from "../state/hooks"
 
 const VITE_APP_BASE_URL = import.meta.env.VITE_APP_BASE_URL as string
 
@@ -10,6 +11,8 @@ export interface ICreateWorkoutFormProps {}
 const CreateWorkoutForm: React.FunctionComponent<ICreateWorkoutFormProps> = (
 	props
 ) => {
+    const user = useAppSelector(state => state.auth.user)
+
 	return (
 		<div className="bg-primary-300 dark:bg-primary-700 rounded-md drop-shadow-md h-[150px] flex flex-col items-center justify-center gap-4">
             <h3 className="text-primary-800 dark:text-yellow-400 mb-[-10px]">Add <span className="underline decoration-primary-500 underline-offset-1 text-teal-700 dark:text-orange-400">new</span> workout 💪🏼</h3>
@@ -21,11 +24,18 @@ const CreateWorkoutForm: React.FunctionComponent<ICreateWorkoutFormProps> = (
                 }}
                 onSubmit={async (values, actions) => {
                     console.log(values)
+
+                    const formData = {
+                        name: values.name,
+                        reps: values.reps,
+                        load: values.load,
+                        username: user
+                    }
                     
                     const response = await fetch(`${VITE_APP_BASE_URL}/workouts`, {
                         method: 'POST',
 						headers: { "Content-Type": "application/json" },
-						body: JSON.stringify(values)
+						body: JSON.stringify(formData)
                     })
 
                     console.log(response)
