@@ -15,7 +15,7 @@ const CreateWorkoutForm: React.FunctionComponent<ICreateWorkoutFormProps> = (
 
 	return (
 		<div className="bg-primary-300 dark:bg-primary-700 rounded-md drop-shadow-md h-[150px] flex flex-col items-center justify-center gap-4">
-            <h3 className="text-primary-800 dark:text-yellow-400 mb-[-10px]">Add <span className="underline decoration-primary-500 underline-offset-1 text-teal-700 dark:text-orange-400">new</span> workout 💪🏼</h3>
+            <h3 className="font-mono font-semibold text-primary-800 dark:text-yellow-400 mb-[-10px]">Add <span className="underline decoration-primary-500 underline-offset-1 text-teal-700 dark:text-orange-400">new</span> workout 💪🏼</h3>
             <Formik
                 initialValues={{
                     name: "",
