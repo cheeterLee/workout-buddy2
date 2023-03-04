@@ -82,7 +82,7 @@ const SignupForm: React.FunctionComponent<ISignupFormProps> = (props) => {
 					if (signedup) {
 						dispatch(
 							setLogin({
-								user: signedup.user,
+								user: signedup.email,
 								token: signedup.token
 							})
 						)
