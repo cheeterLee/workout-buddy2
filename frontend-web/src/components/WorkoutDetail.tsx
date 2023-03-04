@@ -15,12 +15,12 @@ const WorkoutDetail: React.FunctionComponent<IWorkoutDetailProps> = ({
     const handleCheckboxChange = () => setIsChecked((prev) => !prev)
 
 	return (
-		<div className="w-full border-2 rounded-md flex items-center justify-between">
-			<div className="flex items-center justify-center text-primary-800 dark:text-yellow-400 px-2">
+		<div className="w-full border-2 rounded-md flex items-center justify-between py-1">
+			<div className="cursor-move flex items-center justify-center text-primary-800 dark:text-yellow-400 ml-2 p-1 rounded-md hover:dark:bg-primary-600 hover:bg-primary-400">
 				<RxDragHandleDots2 />
 			</div>
 			<div className="flex gap-4 text-primary-800 dark:text-yellow-400">
-				<p>{workout.name}</p>
+				<p className="font-mono font-semibold">{workout.name}</p>
 				<p>{`${workout.reps} reps`}</p>
 				<p>{`${workout.load} kg`}</p>
 			</div>
@@ -46,7 +46,7 @@ const WorkoutDetail: React.FunctionComponent<IWorkoutDetailProps> = ({
 						</svg>
 					</div>
 				</label>
-                <div className="flex justify-center items-center text-primary-800 dark:text-yellow-400 px-2">
+                <div className="flex text-lg mx-2 p-1 cursor-pointer justify-center items-center text-primary-800 dark:text-yellow-400 hover:dark:bg-primary-600 hover:bg-primary-400 rounded-md">
 				    <AiOutlineDelete />
                 </div>
 			</div>
