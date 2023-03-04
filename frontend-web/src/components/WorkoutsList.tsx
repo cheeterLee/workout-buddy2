@@ -27,7 +27,7 @@ const WorkoutList: React.FunctionComponent<IWorkoutListProps> = props => {
         fetchWorkouts()
     }, [])
 
-    return <div className='bg-primary-300 dark:bg-primary-700 rounded-md drop-shadow-md flex-1'>
+    return <div className='bg-primary-300 dark:bg-primary-700 rounded-md drop-shadow-md flex-1 flex flex-col gap-0 p-1'>
         {workouts.map((workout: Workout, index: number) => (
             <WorkoutDetail key={index} workout={workout} />
         ))}
