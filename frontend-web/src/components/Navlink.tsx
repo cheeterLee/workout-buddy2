@@ -9,7 +9,7 @@ export interface INavlinkProps {
 const Navlink: React.FunctionComponent<INavlinkProps> = ({ icon, name }) => {
     const navigate = useNavigate()
 
-    const handleClick = () => navigate(`/${name}`)
+    const handleClick = () => setTimeout(() => {navigate(`/${name}`)}, 0)
 
     return (
         <li 

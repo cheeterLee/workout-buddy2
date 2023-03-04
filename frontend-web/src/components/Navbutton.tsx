@@ -22,7 +22,9 @@ const Navbutton: React.FunctionComponent<INavbuttonProps> = ({ text }) => {
             user: null,
             token: null
         }))
-        navigate('/login')
+        setTimeout(() => {
+            navigate('/login')
+        }, 0)
     }
 
     return <button 

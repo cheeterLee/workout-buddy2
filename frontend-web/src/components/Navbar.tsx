@@ -26,7 +26,6 @@ const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
 	return (
 		<>
 			<div
-				onClick={() => navigate('/home')}
 				className="bg-primary-400 dark:bg-primary-900 w-screen flex sm:justify-center items-center h-24 gap-14
         drop-shadow-md"
 			>
