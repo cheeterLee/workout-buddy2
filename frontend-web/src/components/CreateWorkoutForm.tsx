@@ -2,7 +2,8 @@ import React from "react"
 import { Formik, Field, Form } from "formik"
 import { Workout } from "../types"
 //TODO: ErrorMessage implementation
-import { useAppSelector } from "../state/hooks"
+import { useAppSelector, useAppDispatch } from "../state/hooks"
+import { setWorkouts } from "../state"
 
 const VITE_APP_BASE_URL = import.meta.env.VITE_APP_BASE_URL as string
 
@@ -12,6 +13,8 @@ const CreateWorkoutForm: React.FunctionComponent<ICreateWorkoutFormProps> = (
 	props
 ) => {
     const user = useAppSelector(state => state.auth.user)
+    const prevWorkouts: Workout[] = useAppSelector(state => state.auth.workouts)
+    const dispatch = useAppDispatch()
 
 	return (
 		<div className="bg-primary-300 dark:bg-primary-700 rounded-md drop-shadow-md h-[150px] flex flex-col items-center justify-center gap-4">
@@ -41,6 +44,10 @@ const CreateWorkoutForm: React.FunctionComponent<ICreateWorkoutFormProps> = (
                     console.log(response)
                     const newWorkout: Workout = await response.json()
                     console.log(newWorkout)
+
+                    dispatch(setWorkouts({
+                        workouts: [...prevWorkouts, newWorkout]
+                    }))
 
                     actions.resetForm()
                     actions.setSubmitting(false)
