@@ -75,6 +75,8 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
 					const loggedIn = await response.json()
 					console.log(loggedIn)
 
+					// localStorage.setItem('user', JSON.stringify(loggedIn))
+
 					if (loggedIn) {
 						dispatch(
 							setLogin({
