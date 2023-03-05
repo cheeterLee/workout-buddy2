@@ -1,20 +1,21 @@
 import React from "react"
 import { IoIosFitness } from "react-icons/io"
+import { Workout } from "../types"
 
 export interface IWorkoutCardProps {
-	workoutName: string
+	workout: Workout
 }
 
 const WorkoutCard: React.FunctionComponent<IWorkoutCardProps> = ({
-	workoutName,
+	workout
 }) => {
-	const handleOnDrag = (e: React.DragEvent, draggedWorkout: string) => {
-		e.dataTransfer.setData("draggedWorkout", draggedWorkout)
+	const handleOnDrag = (e: React.DragEvent, draggedWorkout: Workout) => {
+		e.dataTransfer.setData("draggedWorkout", JSON.stringify(draggedWorkout))
 	}
 
 	return (
 		<div
-			onDragStart={(e) => handleOnDrag(e, `${workoutName}`)}
+			onDragStart={(e) => handleOnDrag(e, workout)}
 			draggable
 			className="cursor-grab w-full border-2 rounded-md flex items-center"
 		>
@@ -22,7 +23,7 @@ const WorkoutCard: React.FunctionComponent<IWorkoutCardProps> = ({
 				<IoIosFitness />
 			</div>
 			<div className="text-primary-800 dark:text-yellow-400 flex-1 flex justify-center">
-				<p className="ml-[-30px]">{workoutName}</p>
+				<p className="ml-[-30px]">{workout.name}</p>
 			</div>
 		</div>
 	)

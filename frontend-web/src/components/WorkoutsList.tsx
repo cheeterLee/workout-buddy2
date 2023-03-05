@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { setWorkouts } from "../state"
 import { store } from "../state/store"
-import { useAppSelector } from "../state/hooks"
+import { useAppSelector, useAppDispatch } from "../state/hooks"
 import { Workout } from "../types"
 import WorkoutDetail from "./WorkoutDetail"
 
@@ -12,6 +12,7 @@ export interface IWorkoutListProps {}
 const WorkoutList: React.FunctionComponent<IWorkoutListProps> = (props) => {
 	const workouts = useAppSelector((state) => state.auth.workouts)
 	const user = useAppSelector((state) => state.auth.user)
+	const dispatch = useAppDispatch()
 
 	const handleDragOver = (e: React.DragEvent) => {
 		e.preventDefault()
@@ -19,9 +20,13 @@ const WorkoutList: React.FunctionComponent<IWorkoutListProps> = (props) => {
 	}
 
 	const handleOnDrop = (e: React.DragEvent) => {
-		const draggedWorkout = e.dataTransfer.getData('draggedWorkout') as string
+ 		const draggedWorkout = JSON.parse(e.dataTransfer.getData('draggedWorkout'))
 		console.log('draggedWorkout', draggedWorkout)
-		// update state
+		store.dispatch(
+			setWorkouts({
+				workouts: [...workouts, draggedWorkout]
+			})
+		)
 	}
 
 	const fetchWorkouts = async () => {
