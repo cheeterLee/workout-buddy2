@@ -13,6 +13,17 @@ const WorkoutList: React.FunctionComponent<IWorkoutListProps> = (props) => {
 	const workouts = useAppSelector((state) => state.auth.workouts)
 	const user = useAppSelector((state) => state.auth.user)
 
+	const handleDragOver = (e: React.DragEvent) => {
+		e.preventDefault()
+		console.log('drag over')
+	}
+
+	const handleOnDrop = (e: React.DragEvent) => {
+		const draggedWorkout = e.dataTransfer.getData('draggedWorkout') as string
+		console.log('draggedWorkout', draggedWorkout)
+		// update state
+	}
+
 	const fetchWorkouts = async () => {
 		const response = await fetch(
 			`${VITE_APP_BASE_URL}/workouts/?username=${user}`
@@ -32,7 +43,10 @@ const WorkoutList: React.FunctionComponent<IWorkoutListProps> = (props) => {
 	}, [])
 
 	return (
-		<div className="bg-primary-300 dark:bg-primary-700 rounded-md drop-shadow-md flex-1 flex flex-col gap-0 p-1">
+		<div 
+		onDragOver={handleDragOver}
+		onDrop={handleOnDrop}
+		className="bg-primary-300 dark:bg-primary-700 rounded-md drop-shadow-md flex-1 flex flex-col gap-0 p-1">
 			{workouts.map((workout: Workout, index: number) => (
 				<WorkoutDetail key={index} workout={workout} />
 			))}
