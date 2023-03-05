@@ -37,16 +37,32 @@ const WorkoutList: React.FunctionComponent<IWorkoutListProps> = (props) => {
 		console.log("drag over")
 	}
 
-	const handleOnDrop = (e: React.DragEvent) => {
+	const handleOnDrop = async (e: React.DragEvent) => {
 		const draggedWorkout = JSON.parse(
 			e.dataTransfer.getData("draggedWorkout")
 		)
 		console.log("draggedWorkout", draggedWorkout)
-		store.dispatch(
-			setWorkouts({
-				workouts: [...workouts, draggedWorkout],
-			})
-		)
+		const workoutData = {
+			name: draggedWorkout.name,
+			reps: draggedWorkout.reps,
+			load: draggedWorkout.load,
+			username: user
+		}
+
+		const response = await fetch(`${VITE_APP_BASE_URL}/workouts`, {
+			method: 'POST',
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(workoutData)
+		})
+
+		const newWorkout: Workout = await response.json()
+		if (newWorkout) {
+			store.dispatch(
+				setWorkouts({
+					workouts: [...workouts, draggedWorkout],
+				})
+			)
+		}
 	}
 
 	const fetchWorkouts = async () => {
