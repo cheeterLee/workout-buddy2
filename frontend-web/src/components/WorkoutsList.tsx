@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react"
+import React, { useCallback, useEffect } from "react"
 import { setWorkouts } from "../state"
 import { store } from "../state/store"
 import { useAppSelector, useAppDispatch } from "../state/hooks"
@@ -16,7 +16,7 @@ const WorkoutList: React.FunctionComponent<IWorkoutListProps> = (props) => {
 	const dragItemRef = React.useRef<any>(null)
 	const dragOverItemRef = React.useRef<any>(null)
 
-	const handleSort = () => {
+	const handleSort = useCallback(() => {
 		let _workouts = [...workouts]
 		const draggedItemContent = _workouts.splice(dragItemRef.current, 1)[0]
 		_workouts.splice(dragOverItemRef.current, 0, draggedItemContent)
@@ -27,11 +27,10 @@ const WorkoutList: React.FunctionComponent<IWorkoutListProps> = (props) => {
 				workouts: _workouts,
 			})
 		)
-	}
+	}, [workouts])
 
 	const handleDragOver = (e: React.DragEvent) => {
 		e.preventDefault()
-		console.log("drag over")
 	}
 
 	const handleOnDrop = async (e: React.DragEvent) => {
