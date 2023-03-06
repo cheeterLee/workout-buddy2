@@ -10,3 +10,8 @@ export type WorkoutPopulated = {
     reps: number
     load: number
 }
+
+export type Dates = {
+    monday: Date
+    sunday: Date
+}
