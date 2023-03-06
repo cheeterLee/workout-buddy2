@@ -57,7 +57,7 @@ const WorkoutDetail: React.FunctionComponent<IWorkoutDetailProps> = ({
 			<div className="cursor-move flex items-center justify-center text-primary-800 dark:text-yellow-400 ml-2 p-1 rounded-md hover:dark:bg-primary-600 hover:bg-primary-400">
 				<RxDragHandleDots2 />
 			</div>
-			<div className="flex gap-4 text-primary-800 dark:text-yellow-400">
+			<div className={`flex gap-4 text-primary-800 dark:text-yellow-400 ${isChecked ? 'line-through' : ''}`}>
 				<p className="font-mono font-semibold">{workout.name}</p>
 				<p>{`${workout.reps} reps`}</p>
 				<p>{`${workout.load} kg`}</p>
