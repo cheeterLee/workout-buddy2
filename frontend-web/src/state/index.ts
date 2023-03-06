@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit"
 import type { PayloadAction } from "@reduxjs/toolkit"
+import { WorkoutPopulated } from "../types"
 
 interface AppState {
     user: string | null
     token: string | null
-    workouts: any
+    workouts: WorkoutPopulated[]
 }
 
 const initialState: AppState = {

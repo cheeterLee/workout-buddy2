@@ -1,10 +1,15 @@
-import React, { useRef, useState } from "react"
-import { Workout } from "../types"
+import React, { useState } from "react"
+import { WorkoutPopulated } from "../types"
 import { RxDragHandleDots2 } from "react-icons/rx"
 import { AiOutlineDelete } from "react-icons/ai"
+import { useAppSelector } from "../state/hooks"
+import { store } from "../state/store"
+import { setWorkouts } from "../state"
+
+const VITE_APP_BASE_URL = import.meta.env.VITE_APP_BASE_URL as string
 
 export interface IWorkoutDetailProps {
-	workout: Workout
+	workout: WorkoutPopulated
 	index: number
 	dragItemRef: React.MutableRefObject<any>
 	dragOverItemRef: React.MutableRefObject<any>
@@ -21,6 +26,24 @@ const WorkoutDetail: React.FunctionComponent<IWorkoutDetailProps> = ({
 	const [isChecked, setIsChecked] = useState<boolean>(false)
 
 	const handleCheckboxChange = () => setIsChecked((prev) => !prev)
+
+	const workouts = useAppSelector(state => state.auth.workouts)
+
+	const handleDelete = async () => {
+		console.log(workout._id)
+		const response = await fetch(`${VITE_APP_BASE_URL}/workouts/${workout._id}`, {
+			method: "DELETE"
+		})
+		console.log(response)
+		const deletedWorkout = await response.json()
+		console.log(deletedWorkout)
+		if (deletedWorkout) {
+			const _workouts = workouts.filter(w => w._id !== deletedWorkout._id)
+			store.dispatch(setWorkouts({
+				workouts: _workouts
+			}))
+		}
+	}
 
 	return (
 		<div
@@ -61,7 +84,9 @@ const WorkoutDetail: React.FunctionComponent<IWorkoutDetailProps> = ({
 						</svg>
 					</div>
 				</label>
-				<div className="flex text-lg mx-2 p-1 cursor-pointer justify-center items-center text-primary-800 dark:text-yellow-400 hover:dark:bg-primary-600 hover:bg-primary-400 rounded-md">
+				<div 
+				onClick={() => handleDelete()}
+				className="flex text-lg mx-2 p-1 cursor-pointer justify-center items-center text-primary-800 dark:text-yellow-400 hover:dark:bg-primary-600 hover:bg-primary-400 rounded-md">
 					<AiOutlineDelete />
 				</div>
 			</div>
