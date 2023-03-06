@@ -70,7 +70,7 @@ const CreateWorkoutForm: React.FunctionComponent<ICreateWorkoutFormProps> = (
                         <label className="text-primary-800 dark:text-yellow-400" htmlFor="reps">Reps:</label>
                         <Field type='text' className='w-[60px] sm:w-[80px] md:w-[100px] lg:w-[120px] xl:w-[200px] bg-primary-100 dark:bg-primary-500 rounded-md focus:outline-none focus:border-2 focus:border-primary-700 dark:focus:border-yellow-300 px-2' name='reps' />
                         <label className="text-primary-800 dark:text-yellow-400" htmlFor="load">Load:</label>
-                        <Field as='select' className='w-[60px] sm:w-[80px] md:w-[100px] lg:w-[120px] xl:w-[200px] bg-primary-100 dark:bg-primary-500 rounded-md focus:outline-none focus:border-2 focus:border-primary-700 dark:focus:border-yellow-300 px-2 text-sm' name='load'>
+                        <Field as='select' className='w-[60px] sm:w-[80px] md:w-[100px] lg:w-[120px] xl:w-[200px] bg-primary-100 dark:bg-primary-500 rounded-md focus:outline-none focus:border-2 focus:border-primary-700 dark:focus:border-yellow-300 px-2 text-sm text-primary-800 dark:text-yellow-400' name='load'>
                             <option className="text-center" value='0'>--Select--</option>
                             <option value='10'>10kg</option>
                             <option value='20'>20kg</option>
