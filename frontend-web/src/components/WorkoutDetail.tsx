@@ -1,21 +1,36 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
 import { Workout } from "../types"
 import { RxDragHandleDots2 } from "react-icons/rx"
 import { AiOutlineDelete } from "react-icons/ai"
 
 export interface IWorkoutDetailProps {
 	workout: Workout
+	index: number
+	dragItemRef: React.MutableRefObject<any>
+	dragOverItemRef: React.MutableRefObject<any>
+	handleSort: () => void
 }
 
 const WorkoutDetail: React.FunctionComponent<IWorkoutDetailProps> = ({
 	workout,
+	index,
+	dragItemRef,
+	dragOverItemRef,
+	handleSort,
 }) => {
-    const [isChecked, setIsChecked] = useState<boolean>(false)
-    
-    const handleCheckboxChange = () => setIsChecked((prev) => !prev)
+	const [isChecked, setIsChecked] = useState<boolean>(false)
+
+	const handleCheckboxChange = () => setIsChecked((prev) => !prev)
 
 	return (
-		<div className="w-full border-2 rounded-md flex items-center justify-between py-1">
+		<div
+			draggable
+			onDragStart={(e) => (dragItemRef.current = index)}
+			onDragEnter={(e) => (dragOverItemRef.current = index)}
+			onDragEnd={handleSort}
+			onDragOver={(e) => e.preventDefault()}
+			className="w-full border-2 rounded-md flex items-center justify-between py-1"
+		>
 			<div className="cursor-move flex items-center justify-center text-primary-800 dark:text-yellow-400 ml-2 p-1 rounded-md hover:dark:bg-primary-600 hover:bg-primary-400">
 				<RxDragHandleDots2 />
 			</div>
@@ -46,9 +61,9 @@ const WorkoutDetail: React.FunctionComponent<IWorkoutDetailProps> = ({
 						</svg>
 					</div>
 				</label>
-                <div className="flex text-lg mx-2 p-1 cursor-pointer justify-center items-center text-primary-800 dark:text-yellow-400 hover:dark:bg-primary-600 hover:bg-primary-400 rounded-md">
-				    <AiOutlineDelete />
-                </div>
+				<div className="flex text-lg mx-2 p-1 cursor-pointer justify-center items-center text-primary-800 dark:text-yellow-400 hover:dark:bg-primary-600 hover:bg-primary-400 rounded-md">
+					<AiOutlineDelete />
+				</div>
 			</div>
 		</div>
 	)
