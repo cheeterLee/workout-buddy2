@@ -120,6 +120,7 @@ const SignupForm: React.FunctionComponent<ISignupFormProps> = (props) => {
 						className="bg-primary-100 dark:bg-primary-500 rounded-md focus:outline-none focus:border-2 focus:border-primary-700 dark:focus:border-yellow-300 px-2"
 						name="password"
 						type="password"
+						autoComplete='current-password'
 					/>
 					<ErrorMessage
 						className="text-red-700 dark:text-red-300 text-xs"
@@ -136,6 +137,7 @@ const SignupForm: React.FunctionComponent<ISignupFormProps> = (props) => {
 						className="bg-primary-100 dark:bg-primary-500 rounded-md focus:outline-none focus:border-2 focus:border-primary-700 dark:focus:border-yellow-300 px-2"
 						name="cPassword"
 						type="Password"
+						autoComplete='current-password'
 					/>
 					<ErrorMessage
 						className="text-red-700 dark:text-red-300 text-xs"

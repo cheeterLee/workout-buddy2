@@ -100,6 +100,7 @@ const LoginForm: React.FunctionComponent<ILoginFormProps> = (props) => {
 						className="bg-primary-100 dark:bg-primary-500 rounded-md focus:outline-none focus:border-2 focus:border-primary-700 dark:focus:border-yellow-300 px-2"
 						name="email"
 						type="email"
+						autoComplete='current-password'
 					/>
 					<ErrorMessage
 						className="text-red-700 dark:text-red-300 text-xs"
