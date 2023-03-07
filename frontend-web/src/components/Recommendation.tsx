@@ -17,7 +17,7 @@ const Recommendation: React.FunctionComponent<IRecommendationProps> = () => {
 			</h3>
 			<div className="flex flex-col gap-1">
 				{recommendWorkoutList.map((workout, index) => (
-					<WorkoutCard workout={workout} />
+					<WorkoutCard key={index} workout={workout} />
 				))}
 			</div>
 		</div>
