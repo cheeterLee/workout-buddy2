@@ -9,6 +9,7 @@ export type WorkoutPopulated = {
     name: string
     reps: number
     load: number
+    createDate: string
 }
 
 export type Dates = {

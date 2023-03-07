@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from "react"
 import { setWorkouts } from "../state"
 import { store } from "../state/store"
 import { useAppSelector } from "../state/hooks"
-import { Workout, WorkoutPopulated } from "../types"
+import { WorkoutPopulated } from "../types"
 import WorkoutDetail from "./WorkoutDetail"
 
 const VITE_APP_BASE_URL = import.meta.env.VITE_APP_BASE_URL as string
@@ -51,7 +51,7 @@ const WorkoutList: React.FunctionComponent<IWorkoutListProps> = (props) => {
 			body: JSON.stringify(workoutData),
 		})
 
-		const newWorkout: Workout = await response.json()
+		const newWorkout: WorkoutPopulated = await response.json()
 		if (newWorkout) {
 			store.dispatch(
 				setWorkouts({
@@ -66,7 +66,7 @@ const WorkoutList: React.FunctionComponent<IWorkoutListProps> = (props) => {
 			`${VITE_APP_BASE_URL}/workouts/?username=${user}`
 		)
 		console.log(response)
-		const fetchedWorkouts: Workout[] = await response.json()
+		const fetchedWorkouts: WorkoutPopulated[] = await response.json()
 		console.log(fetchedWorkouts)
 		store.dispatch(
 			setWorkouts({
