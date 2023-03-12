@@ -3,6 +3,7 @@ import { setCompletedWorkouts } from "../state"
 import { useAppSelector } from "../state/hooks"
 import { store } from "../state/store"
 import { WorkoutPopulated } from "../types"
+import { formateDate } from "../utils"
 import WorkoutBadge from "./WorkoutBadge"
 
 export interface IWeekdayCardProps {
@@ -22,6 +23,7 @@ const WeekdayCard: React.FunctionComponent<IWeekdayCardProps> = ({
 	)
 
 	const [workouts, setWorkouts] = useState<WorkoutPopulated[]>([])
+    const isToday = formateDate(new Date()) === exactDate
 
 	const fetchCompletedWorkouts = async () => {
 		const response = await fetch(
@@ -42,7 +44,7 @@ const WeekdayCard: React.FunctionComponent<IWeekdayCardProps> = ({
 	}, [workouts])
 
 	return (
-		<div className="outline-dashed outline-1 outline-primary-800 dark:outline-primary-400 grid relative">
+		<div className={`${isToday ? 'outline-yellow-300 dark:outline-teal-400 outline' : 'outline-primary-800 outline-dashed dark:outline-primary-400 outline-1'} grid relative`}>
 			<p className="absolute top-[45%] left-[30%] text-primary-800">
 				{dateInWeek}
 			</p>
