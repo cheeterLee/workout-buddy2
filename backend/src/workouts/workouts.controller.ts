@@ -24,6 +24,15 @@ export class WorkoutsController {
     return this.workoutService.getAllWorkouts(username);
   }
 
+  //
+  @Get('/completed')
+  async getAllCompletedWorkouts(
+    @Query('username') username: string,
+    @Query('createdDate') createdDate: string,
+  ): Promise<Workout[]> {
+    return this.workoutService.getAllCompletedWorkouts(username, createdDate);
+  }
+
   // GET /workouts/:id --> { ... }
   @Get(':id')
   async getSingleWorkout(@Param('id') id: number): Promise<Workout> {
