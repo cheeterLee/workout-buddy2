@@ -39,7 +39,7 @@ const WeekdayCard: React.FunctionComponent<IWeekdayCardProps> = ({
 
 	useEffect(() => {
 		fetchCompletedWorkouts()
-	}, [])
+	}, [workouts])
 
 	return (
 		<div className="outline-dashed outline-1 outline-primary-800 dark:outline-primary-400 grid relative">

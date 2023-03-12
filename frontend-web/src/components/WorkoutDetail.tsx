@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { WorkoutPopulated } from "../types"
 import { RxDragHandleDots2 } from "react-icons/rx"
 import { AiOutlineDelete } from "react-icons/ai"
@@ -62,6 +62,17 @@ const WorkoutDetail: React.FunctionComponent<IWorkoutDetailProps> = ({
 			}))
 		}
 	}
+
+	const fetchWorkoutStatus = async () => {
+		const response = await fetch(`${VITE_APP_BASE_URL}/workouts/${workout._id}`)
+		const w = await response.json()
+		console.log(w)
+		setIsChecked(w.isCompleted);
+	}
+
+	useEffect(() => {
+		fetchWorkoutStatus()
+	}, [isChecked])
 
 	return (
 		<div
