@@ -85,16 +85,17 @@ const WorkoutList: React.FunctionComponent<IWorkoutListProps> = (props) => {
 			onDrop={handleOnDrop}
 			className="bg-primary-300 dark:bg-primary-700 rounded-md drop-shadow-md flex-1 flex flex-col gap-0 p-1"
 		>
-			{workouts.length && workouts.map((workout: WorkoutPopulated, index: number) => (
-				<WorkoutDetail
-					key={index}
-					workout={workout}
-					index={index}
-					dragItemRef={dragItemRef}
-					dragOverItemRef={dragOverItemRef}
-					handleSort={handleSort}
-				/>
-			))}
+			{workouts.length &&
+				workouts.map((workout: WorkoutPopulated, index: number) => (
+					<WorkoutDetail
+						key={index}
+						workout={workout}
+						index={index}
+						dragItemRef={dragItemRef}
+						dragOverItemRef={dragOverItemRef}
+						handleSort={handleSort}
+					/>
+				))}
 		</div>
 	)
 }

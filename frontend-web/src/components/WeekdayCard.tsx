@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { setCompletedWorkouts } from "../state"
 import { useAppSelector } from "../state/hooks"
-import { store } from "../state/store"
 import { WorkoutPopulated } from "../types"
 import { formateDate } from "../utils"
 import WorkoutBadge from "./WorkoutBadge"
@@ -29,13 +27,10 @@ const WeekdayCard: React.FunctionComponent<IWeekdayCardProps> = ({
 		const response = await fetch(
 			`${VITE_APP_BASE_URL}/workouts/completed?username=${user}&createdDate=${exactDate}`
 		)
-		// console.log(response)
+
 		const fetchedCompletedWorkouts: WorkoutPopulated[] =
 			await response.json()
 		console.log(fetchedCompletedWorkouts)
-		// store.dispatch(setCompletedWorkouts({
-		// completedWorkouts: fetchedCompletedWorkouts
-		// }))
 		setWorkouts(fetchedCompletedWorkouts)
 	}
 

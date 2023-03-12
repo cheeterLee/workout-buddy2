@@ -25,49 +25,65 @@ const WorkoutDetail: React.FunctionComponent<IWorkoutDetailProps> = ({
 }) => {
 	const [isChecked, setIsChecked] = useState<boolean>(false)
 
-	const workouts = useAppSelector(state => state.auth.workouts)
-	const completedWorkouts = useAppSelector(state => state.auth.completedWorkouts)
+	const workouts = useAppSelector((state) => state.auth.workouts)
+	const completedWorkouts = useAppSelector(
+		(state) => state.auth.completedWorkouts
+	)
 
 	const handleCheckboxChange = async () => {
 		setIsChecked((prev) => !prev)
 		// TODO: dispatch workout completed
-		const response = await fetch(`${VITE_APP_BASE_URL}/workouts/${workout._id}`, {
-			method: "PUT",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({
-				isCompleted: !isChecked // hack around the async state update
-			})
-		})
+		const response = await fetch(
+			`${VITE_APP_BASE_URL}/workouts/${workout._id}`,
+			{
+				method: "PUT",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					isCompleted: !isChecked, // hack around the async state update
+				}),
+			}
+		)
 		const updatedWorkout = await response.json()
 		console.log(updatedWorkout)
 		if (updatedWorkout) {
-			store.dispatch(setCompletedWorkouts({
-				completedWorkouts: [...completedWorkouts, updatedWorkout]
-			}))
+			store.dispatch(
+				setCompletedWorkouts({
+					completedWorkouts: [...completedWorkouts, updatedWorkout],
+				})
+			)
 		}
 	}
 
 	const handleDelete = async () => {
 		console.log(workout._id)
-		const response = await fetch(`${VITE_APP_BASE_URL}/workouts/${workout._id}`, {
-			method: "DELETE"
-		})
+		const response = await fetch(
+			`${VITE_APP_BASE_URL}/workouts/${workout._id}`,
+			{
+				method: "DELETE",
+			}
+		)
 		console.log(response)
 		const deletedWorkout = await response.json()
 		console.log(deletedWorkout)
 		if (deletedWorkout) {
-			const _workouts = workouts.filter(w => w._id !== deletedWorkout._id)
-			store.dispatch(setWorkouts({
-				workouts: _workouts
-			}))
+			const _workouts = workouts.filter(
+				(w) => w._id !== deletedWorkout._id
+			)
+			store.dispatch(
+				setWorkouts({
+					workouts: _workouts,
+				})
+			)
 		}
 	}
 
 	const fetchWorkoutStatus = async () => {
-		const response = await fetch(`${VITE_APP_BASE_URL}/workouts/${workout._id}`)
+		const response = await fetch(
+			`${VITE_APP_BASE_URL}/workouts/${workout._id}`
+		)
 		const w = await response.json()
 		console.log(w)
-		setIsChecked(w.isCompleted);
+		setIsChecked(w.isCompleted)
 	}
 
 	useEffect(() => {
@@ -86,7 +102,11 @@ const WorkoutDetail: React.FunctionComponent<IWorkoutDetailProps> = ({
 			<div className="cursor-move flex items-center justify-center text-primary-800 dark:text-yellow-400 ml-2 p-1 rounded-md hover:dark:bg-primary-600 hover:bg-primary-400">
 				<RxDragHandleDots2 />
 			</div>
-			<div className={`flex gap-4 text-primary-800 dark:text-yellow-400 ${isChecked ? 'line-through' : ''}`}>
+			<div
+				className={`flex gap-4 text-primary-800 dark:text-yellow-400 ${
+					isChecked ? "line-through" : ""
+				}`}
+			>
 				<p className="font-mono font-semibold">{workout.name}</p>
 				<p>{`${workout.reps} reps`}</p>
 				<p>{`${workout.load} kg`}</p>
@@ -113,9 +133,10 @@ const WorkoutDetail: React.FunctionComponent<IWorkoutDetailProps> = ({
 						</svg>
 					</div>
 				</label>
-				<div 
-				onClick={() => handleDelete()}
-				className="flex text-lg mx-2 p-1 cursor-pointer justify-center items-center text-primary-800 dark:text-yellow-400 hover:dark:bg-primary-600 hover:bg-primary-400 rounded-md">
+				<div
+					onClick={() => handleDelete()}
+					className="flex text-lg mx-2 p-1 cursor-pointer justify-center items-center text-primary-800 dark:text-yellow-400 hover:dark:bg-primary-600 hover:bg-primary-400 rounded-md"
+				>
 					<AiOutlineDelete />
 				</div>
 			</div>
