@@ -8,7 +8,7 @@ function App() {
 	console.log("isAuth", isAuth)
 
 	return (
-		<div className="w-[100%], h-[100%] bg-primary-200 dark:bg-primary-900">
+		<div className="w-[100%] h-[100%] bg-primary-200 dark:bg-primary-900">
 			<Navbar />
 			<Routes>
 				<Route path="/login" element={<Login />} />
