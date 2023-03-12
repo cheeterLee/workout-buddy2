@@ -36,3 +36,7 @@ export const getStartAndEndOfWeek = (date: Date): Dates => {
 	const sunday = new Date(temp7)
 	return { monday, tuesday, wednesday, thursday, friday, saturday, sunday }
 }
+
+export const trunCateText = (str: string): string => {
+	return str.length >= 3 ? str.slice(0, 3) + '..' : str
+}

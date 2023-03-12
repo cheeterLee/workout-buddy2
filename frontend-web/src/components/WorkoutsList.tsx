@@ -65,9 +65,9 @@ const WorkoutList: React.FunctionComponent<IWorkoutListProps> = (props) => {
 		const response = await fetch(
 			`${VITE_APP_BASE_URL}/workouts/?username=${user}`
 		)
-		console.log(response)
+		// console.log(response)
 		const fetchedWorkouts: WorkoutPopulated[] = await response.json()
-		console.log(fetchedWorkouts)
+		// console.log(fetchedWorkouts)
 		store.dispatch(
 			setWorkouts({
 				workouts: fetchedWorkouts,
@@ -85,7 +85,7 @@ const WorkoutList: React.FunctionComponent<IWorkoutListProps> = (props) => {
 			onDrop={handleOnDrop}
 			className="bg-primary-300 dark:bg-primary-700 rounded-md drop-shadow-md flex-1 flex flex-col gap-0 p-1"
 		>
-			{workouts.map((workout: WorkoutPopulated, index: number) => (
+			{workouts.length && workouts.map((workout: WorkoutPopulated, index: number) => (
 				<WorkoutDetail
 					key={index}
 					workout={workout}
