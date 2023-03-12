@@ -30,6 +30,9 @@ export class Workout {
 
     @Prop({ default: formateDate(new Date(Date.now())) })
     createdDate: string
+
+    @Prop({ default: false })
+    isCompleted: boolean
 }
 
 export const WorkoutSchema = SchemaFactory.createForClass(Workout)

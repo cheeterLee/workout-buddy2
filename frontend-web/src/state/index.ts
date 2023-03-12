@@ -6,12 +6,14 @@ interface AppState {
     user: string | null
     token: string | null
     workouts: WorkoutPopulated[]
+    completedWorkouts: WorkoutPopulated[]
 }
 
 const initialState: AppState = {
     user: null,
     token: null,
     workouts: [],
+    completedWorkouts: [], 
 }
 
 export const authSlice = createSlice({
@@ -29,9 +31,12 @@ export const authSlice = createSlice({
         },
         setWorkouts: (state, action: PayloadAction<any>) => {
             state.workouts = action.payload.workouts
+        },
+        setCompletedWorkouts: (state, action: PayloadAction<any>) => {
+            state.completedWorkouts = action.payload.completedWorkouts
         }
     }
 })
 
-export const { setLogin, setLogout, setWorkouts } = authSlice.actions
+export const { setLogin, setLogout, setWorkouts, setCompletedWorkouts } = authSlice.actions
 export default authSlice.reducer

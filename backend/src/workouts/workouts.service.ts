@@ -38,5 +38,8 @@ export class WorkoutsService {
     return this.workoutModel.findByIdAndDelete(id).exec()
   }
 
-
+  // // Mark workout as completed
+  // async markWorkoutAsComplete(id: number) {
+  //   return this.workoutModel.findByIdAndUpdate({ isCompleted: true })
+  // }
 }

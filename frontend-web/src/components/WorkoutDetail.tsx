@@ -4,7 +4,7 @@ import { RxDragHandleDots2 } from "react-icons/rx"
 import { AiOutlineDelete } from "react-icons/ai"
 import { useAppSelector } from "../state/hooks"
 import { store } from "../state/store"
-import { setWorkouts } from "../state"
+import { setCompletedWorkouts, setWorkouts } from "../state"
 
 const VITE_APP_BASE_URL = import.meta.env.VITE_APP_BASE_URL as string
 
@@ -25,9 +25,27 @@ const WorkoutDetail: React.FunctionComponent<IWorkoutDetailProps> = ({
 }) => {
 	const [isChecked, setIsChecked] = useState<boolean>(false)
 
-	const handleCheckboxChange = () => setIsChecked((prev) => !prev)
-
 	const workouts = useAppSelector(state => state.auth.workouts)
+	const completedWorkouts = useAppSelector(state => state.auth.completedWorkouts)
+
+	const handleCheckboxChange = async () => {
+		setIsChecked((prev) => !prev)
+		// TODO: dispatch workout completed
+		const response = await fetch(`${VITE_APP_BASE_URL}/workouts/${workout._id}`, {
+			method: "PUT",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({
+				isCompleted: !isChecked // hack around the async state update
+			})
+		})
+		const updatedWorkout = await response.json()
+		console.log(updatedWorkout)
+		if (updatedWorkout) {
+			store.dispatch(setCompletedWorkouts({
+				completedWorkouts: [...completedWorkouts, updatedWorkout]
+			}))
+		}
+	}
 
 	const handleDelete = async () => {
 		console.log(workout._id)

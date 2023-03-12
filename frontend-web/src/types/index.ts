@@ -10,6 +10,7 @@ export type WorkoutPopulated = {
     reps: number
     load: number
     createDate: string
+    isCompleted: boolean
 }
 
 export type Dates = {
