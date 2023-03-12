@@ -2,9 +2,9 @@ import { Formik, Field, Form } from "formik"
 import React from "react"
 import { useAppSelector } from "../state/hooks"
 
-export interface IContactPageProps {}
+export interface ISubscribePageProps {}
 
-const ContactPage: React.FunctionComponent<IContactPageProps> = (props) => {
+const SubscribePage: React.FunctionComponent<ISubscribePageProps> = (props) => {
     const user = useAppSelector(state => state.auth.user)
 
 	return (
@@ -50,7 +50,7 @@ const ContactPage: React.FunctionComponent<IContactPageProps> = (props) => {
 						</div>
 						<button
 							type="submit"
-							className="w-full bg-primary-500 hover:bg-primary-400 rounded-md drop-shadow-md p-1 text-primary-900 mt-2 dark:text-yellow-400"
+							className="w-full bg-primary-500 hover:bg-primary-400 rounded-md drop-shadow-md p-1 text-primary-900 mt-3 dark:text-yellow-400"
 						>
 							Subscribe
 						</button>
@@ -61,4 +61,4 @@ const ContactPage: React.FunctionComponent<IContactPageProps> = (props) => {
 	)
 }
 
-export default ContactPage
+export default SubscribePage

@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom"
 import { Navbar, PrivateRoutes } from "./components"
-import { Contact, Login, Personal, Home, Signup } from "./pages"
+import { Login, Personal, Home, Signup, Subscribe } from "./pages"
 import { useSelector } from "react-redux"
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
 				<Route element={<PrivateRoutes />}>
 					<Route path="/home" element={<Home />} />
 					<Route path="/personal" element={<Personal />} />
-					<Route path="/contact" element={<Contact />} />
+					<Route path="/subscribe" element={<Subscribe />} />
 				</Route>
 				<Route path="*" element={<Navigate to="/login" />} />
 			</Routes>
