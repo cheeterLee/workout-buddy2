@@ -28,6 +28,16 @@ const Calender: React.FunctionComponent<ICalenderProps> = (props) => {
 		_sunday
 	]
 
+	const weekDay = [
+		'Mon',
+		'Tue',
+		'Wed',
+		'Thu',
+		'Fri',
+		'Sat',
+		'Sun'
+	]
+
 	return (
 		<div className="bg-primary-300 dark:bg-primary-700 h-[300px] drop-shadow-md rounded-md p-2 flex flex-col justify-center">
 			<h3 className="text-primary-800 dark:text-yellow-400 text-center font-mono font-semibold py-1">
@@ -36,7 +46,7 @@ const Calender: React.FunctionComponent<ICalenderProps> = (props) => {
 			<DateDisplay monday={_monday} sunday={_sunday} />
 			<div className="grid grid-cols-7 h-[80%] p-2 bg-primary-400 dark:bg-primary-600 rounded-md">
 				{dates.map((date, index) => (
-					<WeekdayCard key={index} exactDate={date} />
+					<WeekdayCard key={index} exactDate={date} dateInWeek={weekDay[index]} />
 				))}
 			</div>
 		</div>
