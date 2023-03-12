@@ -15,5 +15,10 @@ export type WorkoutPopulated = {
 
 export type Dates = {
     monday: Date
+    tuesday: Date
+    wednesday: Date
+    thursday: Date
+    friday: Date
+    saturday: Date
     sunday: Date
 }
