@@ -1,5 +1,4 @@
 import React from "react"
-import { formateDate, getStartAndEndOfWeek } from "../utils"
 
 export interface IDateDisplayProps {
 	monday: string

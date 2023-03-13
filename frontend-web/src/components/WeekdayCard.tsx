@@ -35,6 +35,7 @@ const WeekdayCard: React.FunctionComponent<IWeekdayCardProps> = ({
 	}
 
 	useEffect(() => {
+        // TODO debounce
 		fetchCompletedWorkouts()
 	}, [workouts])
 
