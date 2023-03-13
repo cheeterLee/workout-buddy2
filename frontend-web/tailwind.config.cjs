@@ -20,6 +20,10 @@ module.exports = {
           800: '#615453',
           900: '#534a49',
         }
+      },
+      gridTemplateColumns: {
+        'lg': '250px auto',
+        'xl': '250px auto 250px'
       }
     },
   },
