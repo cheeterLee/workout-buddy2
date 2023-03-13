@@ -22,8 +22,8 @@ module.exports = {
         }
       },
       gridTemplateColumns: {
-        'lg': '250px auto',
-        'xl': '250px auto 250px'
+        'lg': '230px auto',
+        'xl': '230px auto 230px'
       }
     },
   },
