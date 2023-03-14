@@ -47,9 +47,9 @@ const Chart: React.FunctionComponent<IChartProps> = (props) => {
 			.join("path")
 			.attr("d", (d) => generateScaledLine(d))
 			.attr("fill", "none")
-			.attr("stroke", "teal")
-			.classed('font-semibold', true)
-	}, [])
+			.attr("stroke", "salmon")
+			.style("stroke-width", "5px")
+		}, [])
 
 	return (
 		<div className="w-full flex-1 flex justify-center items-center">
