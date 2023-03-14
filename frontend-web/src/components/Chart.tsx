@@ -58,7 +58,7 @@ const Chart: React.FunctionComponent<IChartProps> = (props) => {
 					ref={parentRef}
 					className="w-[85%] h-[80%] bg-primary-300 dark:bg-primary-600 rounded-md drop-shadow-lg"
 				>
-					<svg ref={svgRef}></svg>
+					<svg className="max-w-full max-h-full py-10" ref={svgRef}></svg>
 				</div>
 			</div>
 		</div>
