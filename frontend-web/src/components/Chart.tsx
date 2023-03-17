@@ -44,17 +44,17 @@ const Chart: React.FunctionComponent<IChartProps> = (props) => {
 
 		const yAxis = d3.axisLeft(yScale).ticks(5)
 
-		svg.append("g").call(xAxis).attr("transform", `translate(0, ${height})`)
+		svg.append("g").call(xAxis).attr("transform", `translate(0, ${height})`).classed("font-mono text-sm text-primary-700 dark:text-primary-400", true)
 
-		svg.append("g").call(yAxis)
+		svg.append("g").call(yAxis).classed("font-mono text-sm text-primary-700 dark:text-primary-400", true)
 
 		svg.selectAll(".line")
 			.data([workouts])
 			.join("path")
 			.attr("d", (d) => generateScaledLine(d))
 			.attr("fill", "none")
-			.attr("stroke", "salmon")
-			.style("stroke-width", "5px")
+			.attr("stroke", "#8b7877")
+			.style("stroke-width", "2px")
 	}
 
 	useEffect(() => {
@@ -69,7 +69,7 @@ const Chart: React.FunctionComponent<IChartProps> = (props) => {
 					className="w-[85%] h-[90%] bg-primary-300 dark:bg-primary-600 rounded-md drop-shadow-lg flex flex-col items-center justify-center p-4"
 				>
 					<div>Date right here</div>
-					<div className="w-full h-full flex-1 flex items-center justify-center bg-primary-400 dark:bg-primary-500 rounded-md drop-shadow-md">
+					<div className="w-full h-full flex-1 flex items-center justify-center bg-primary-400 dark:bg-primary-700 rounded-md drop-shadow-md">
 						<svg
 							className=""
 							ref={svgRef}
