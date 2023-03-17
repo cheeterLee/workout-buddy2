@@ -10,8 +10,8 @@ const Chart: React.FunctionComponent<IChartProps> = (props) => {
 	const svgRef = useRef<any>()
 
 	const createGraph = async () => {
-		const width = 200
-		const height = 100
+		const width = 400
+		const height = 200
 
 		const margin = { top: 30, right: 30, bottom: 30, left: 30 }
 		const svg = d3
@@ -63,15 +63,15 @@ const Chart: React.FunctionComponent<IChartProps> = (props) => {
 
 	return (
 		<div className="w-full flex-1 flex justify-center items-center">
-			<div className="w-full h-full border-2 border-red-500 flex items-center justify-center">
+			<div className="w-full h-full flex items-center justify-center">
 				<div
 					ref={parentRef}
-					className="w-[85%] h-[80%] border-2 border-teal-500 bg-primary-300 dark:bg-primary-600 rounded-md drop-shadow-lg flex flex-col items-center justify-center"
+					className="w-[85%] h-[90%] bg-primary-300 dark:bg-primary-600 rounded-md drop-shadow-lg flex flex-col items-center justify-center p-4"
 				>
 					<div>Date right here</div>
-					<div className="w-full h-full flex-1 flex items-center justify-center">
+					<div className="w-full h-full flex-1 flex items-center justify-center bg-primary-400 dark:bg-primary-500 rounded-md drop-shadow-md">
 						<svg
-							className="border-2 border-pink-500"
+							className=""
 							ref={svgRef}
 						></svg>
 					</div>
