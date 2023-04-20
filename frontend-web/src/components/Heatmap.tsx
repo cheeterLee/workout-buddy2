@@ -271,7 +271,7 @@ const Heatmap: React.FunctionComponent<IHeatmapProps> = ({ data }) => {
 
 	return (
 		<>
-			<div className="border-2 border-primary-500 dark:border-primary-600 rounded-lg" id="chart" ref={chartRef}></div>
+			<div className="border-2 border-primary-500 dark:border-primary-600 rounded-lg z-10" id="chart" ref={chartRef}></div>
 		</>
 	)
 }

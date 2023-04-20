@@ -1,13 +1,21 @@
 import React, { useRef, useEffect } from "react"
 import * as d3 from "d3"
+import { getStartAndEndOfWeek, formateDate } from "../utils"
+import DateDisplay from "./DateDisplay"
 
 export interface IChartProps {}
 
 const Chart: React.FunctionComponent<IChartProps> = (props) => {
+	const { monday, tuesday, wednesday, thursday, friday, saturday, sunday } =
+		getStartAndEndOfWeek(new Date())
+	const _monday = formateDate(monday)
+	const _sunday = formateDate(sunday)
+
 	const workouts = [1, 3, 5, 6, 2, 4, 2]
 
 	const parentRef = useRef<any>()
 	const svgRef = useRef<any>()
+
 
 	const createGraph = async () => {
 		const width = 400
@@ -79,7 +87,7 @@ const Chart: React.FunctionComponent<IChartProps> = (props) => {
 					ref={parentRef}
 					className="w-[85%] h-[90%] bg-primary-300 dark:bg-primary-600 rounded-md drop-shadow-lg flex flex-col items-center justify-center p-4"
 				>
-					<div>Date right here</div>
+					<div className='font-mono text-primary-600 dark:text-primary-200 py-2'>{_monday} - {_sunday}</div>
 					<div className="w-full h-full flex-1 flex items-center justify-center bg-primary-400 dark:bg-primary-700 rounded-md drop-shadow-md">
 						<svg className="" ref={svgRef}></svg>
 					</div>

@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react"
-import * as d3 from "d3"
+import React, { useMemo } from "react"
 import Heatmap from "./Heatmap"
+import { getWorkoutsCountPastThreeMonth } from '../utils'
 
 export interface ISummaryProps {}
 
@@ -28,6 +28,11 @@ const data = [
 ]
 
 const Summary: React.FunctionComponent<ISummaryProps> = (props) => {
+	const count = useMemo(
+		() => getWorkoutsCountPastThreeMonth(data),
+		[data]
+	)
+
 	return (
 		<div className="w-full h-[300px] flex items-center justify-center overflow-hidden">
 			<div
@@ -35,7 +40,9 @@ const Summary: React.FunctionComponent<ISummaryProps> = (props) => {
         	flex flex-col
         	dark:bg-primary-600 drop-shadow-lg py-1"
 			>
-				<div className="text-center mt-1 mb-[-5px] text-sm font-mono text-primary-700 dark:text-primary-300">You have worked out 100 times last year</div>
+				<div className="text-center mt-1 mb-[-5px] text-sm font-mono text-primary-700 dark:text-primary-300">
+					You have worked out <span className="text-teal-700 dark:text-orange-400">{count}</span> sets last year
+				</div>
 				<div className="flex-1 flex items-center justify-center max-w-full max-h-full bg-primary-400 dark:bg-primary-500 m-3 rounded-lg drop-shadow-lg">
 					<Heatmap data={data} />
 				</div>

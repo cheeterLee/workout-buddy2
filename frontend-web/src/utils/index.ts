@@ -38,5 +38,11 @@ export const getStartAndEndOfWeek = (date: Date): Dates => {
 }
 
 export const trunCateText = (str: string): string => {
-	return str.length >= 3 ? str.slice(0, 3) + '..' : str
+	return str.length >= 3 ? str.slice(0, 3) + ".." : str
+}
+
+export const getWorkoutsCountPastThreeMonth = (
+	data: { date: string; contributions: number }[]
+): number => {
+	return data.reduce((prev, curr) => prev + curr.contributions, 0)
 }
