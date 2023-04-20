@@ -23,7 +23,6 @@ const Heatmap: React.FunctionComponent<IHeatmapProps> = ({ data }) => {
 
 	useEffect(() => {
 		const firstDate = now.subtract(3, "month").format("YYYY-MM-DD")
-		// const quarterBackFromNow = now.subtract(3, "month");
 		const lastDate = now.format("YYYY-MM-DD")
 
 		// fill the missing dates
@@ -40,10 +39,8 @@ const Heatmap: React.FunctionComponent<IHeatmapProps> = ({ data }) => {
 					new Date(86400000 * k + Date.parse(firstDate))
 						.toISOString()
 						.slice(0, 10)
-				// .replace(/-0(\d)$/, '-$1')
 			)
 
-			// console.log(dates);
 
 			let response = []
 			for (let i = 0, j = 0; i < dates.length; i++) {
@@ -141,8 +138,6 @@ const Heatmap: React.FunctionComponent<IHeatmapProps> = ({ data }) => {
 
 			const formatDay = (i: any) => "MWFS"[i]
 			const formatMonth = d3.utcFormat("%b")
-			// const max = d3.quantile(data, 0.9975, d => Math.abs(d.value));
-			// const color = d3.scaleSequential(d3.interpolatePiYG).domain(['white', 'red']);
 
 			const cellWidth =
 				width /
@@ -160,13 +155,12 @@ const Heatmap: React.FunctionComponent<IHeatmapProps> = ({ data }) => {
 						Math.abs(d.contributions)
 					) as number,
 				])
-				.range(["#EFCFCE", "#F0524D"])
+				.range(["#f1ecd0", "#6b4628"])
 
 			const year = svg
 				.selectAll("g")
 				.data(years)
 				.join("g")
-				// .attr('transform', (d, i) => `translate(40.5,${height * i + cellSize * 1.5})`);
 				.attr("transform", (d, i) => {
 					return `translate(40.5,${"30"})`
 				})
@@ -182,7 +176,10 @@ const Heatmap: React.FunctionComponent<IHeatmapProps> = ({ data }) => {
 				.attr("dy", (d, i) => `${1.15 * i}em`)
 				.attr("class", "week")
 				.style("font-size", "12px")
-				// .text('')
+				.classed(
+                    "font-mono",
+                    true
+                )
 				.text(formatDay)
 
 			console.log(
@@ -205,7 +202,8 @@ const Heatmap: React.FunctionComponent<IHeatmapProps> = ({ data }) => {
 				.join("rect")
 				.attr("width", cellWidth - 3)
 				.attr("height", cellHeight - 3)
-
+                .attr('rx', 4)
+                .attr('ry', 4)
 				.attr(
 					"x",
 					(d: any) =>
@@ -226,7 +224,7 @@ const Heatmap: React.FunctionComponent<IHeatmapProps> = ({ data }) => {
 					if (d.contributions) {
 						return color(d.contributions)
 					} else {
-						return "#E7E7E7"
+						return "#d5cccc"
 					}
 				})
 				.on("mouseover", mouseover)
@@ -234,35 +232,16 @@ const Heatmap: React.FunctionComponent<IHeatmapProps> = ({ data }) => {
 				.on("mouseleave", mouseleave)
 				.append("title")
 
-			// console.log(today);
-
-			// Initialising start and end date
 			let start = firstDate
 			let end = today
-
-			// Calling the utcMonths() function
-			// without step value
-			// var a = d3.utcMonths(start, end);
-
-			// Getting the months values
-			// console.log(a);
 
 			const month = year
 				.append("g")
 				.selectAll("g")
-				// .data(([, values]) => {
-				//   console.log(new Date(firstDate).getUTCMonth(), new Date(today).getUTCMonth());
-				//   // console.log(new Date(data[0].date));
-
-				//   return d3.utcMonths(start, end);
-				//   // return d3.utcMonths('Feb', 'Dec');
-				// })
 				.data(([, values]: [any, any]) => {
 					return d3.utcMonths(
 						d3.utcMonth(new Date(values[0].date)),
 						new Date(values[values.length - 1].date)
-						// d3.utcMonth(new Date(values[0].date)),
-						// isXL ? endMonthText : new Date(values[values.length - 1].date)
 					)
 				})
 				.join("g")
@@ -282,13 +261,17 @@ const Heatmap: React.FunctionComponent<IHeatmapProps> = ({ data }) => {
 				.attr("y", -5)
 				.attr("class", "month")
 				.style("font-size", "12px")
+                .classed(
+                    "font-mono",
+                    true
+                )
 				.text(formatMonth)
 		}
 	}, [fullYearData])
 
 	return (
 		<>
-			<div className="border-2 border-pink-600" id="chart" ref={chartRef}></div>
+			<div className="border-2 border-primary-500 dark:border-primary-600 rounded-lg" id="chart" ref={chartRef}></div>
 		</>
 	)
 }
