@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from "react"
 import * as d3 from "d3"
 import { getStartAndEndOfWeek, formateDate } from "../utils"
-import DateDisplay from "./DateDisplay"
 
 export interface IChartProps {}
 
