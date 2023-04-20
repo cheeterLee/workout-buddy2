@@ -8,7 +8,7 @@
 ![D3.JS](https://img.shields.io/badge/D3.js-F9A03C.svg?style=for-the-badge&logo=d3dotjs&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248.svg?style=for-the-badge&logo=MongoDB&logoColor=white)
 
-**Fully designed and code by [@cheeterLee](https://github.com/cheeterLee) 2023**
+**Fully designed and coded by [@cheeterLee](https://github.com/cheeterLee) 2023**
 
 ## Features 功能
 - Responsive layout with dark and light theme 自适应页面与黑白夜主题
