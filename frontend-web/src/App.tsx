@@ -1,7 +1,12 @@
+import { lazy, Suspense } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
 import { Navbar, PrivateRoutes } from "./components"
-import { Login, Personal, Home, Signup, Subscribe } from "./pages"
+import { Login, Home } from "./pages"
 import { useSelector } from "react-redux"
+
+const Signup = lazy(() => import("./pages/Signup"))
+const Personal = lazy(() => import("./pages/Personal"))
+const Subscribe = lazy(() => import("./pages/Subscribe"))
 
 function App() {
 	const isAuth = Boolean(useSelector((state: any) => state.token)) // if not authenticated, navigate to login
@@ -12,11 +17,32 @@ function App() {
 			<Navbar />
 			<Routes>
 				<Route path="/login" element={<Login />} />
-				<Route path="/signup" element={<Signup />} />
+				<Route
+					path="/signup"
+					element={
+						<Suspense fallback={<>loading...</>}>
+							<Signup />
+						</Suspense>
+					}
+				/>
 				<Route element={<PrivateRoutes />}>
 					<Route path="/home" element={<Home />} />
-					<Route path="/personal" element={<Personal />} />
-					<Route path="/subscribe" element={<Subscribe />} />
+					<Route
+						path="/personal"
+						element={
+							<Suspense fallback={<>loading...</>}>
+								<Personal />
+							</Suspense>
+						}
+					/>
+					<Route
+						path="/subscribe"
+						element={
+							<Suspense fallback={<>loading...</>}>
+								<Subscribe />
+							</Suspense>
+						}
+					/>
 				</Route>
 				<Route path="*" element={<Navigate to="/login" />} />
 			</Routes>
